@@ -13,13 +13,24 @@
   <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="asset/dist/css/adminlte.min.css">
   <link rel="icon" href="assets/dist/img/Logo_POS.png">
 </head>
 
 <?php
 if(isset($_GET["ruta"])){
-  if($_GET["ruta"]=="inicio"){
+  if($_GET["ruta"]=="inicio"||
+  $_GET["ruta"]=="VUsuario"){
+
+  include "asideMenu.php";
+  
   include $_GET["ruta"].".php";
+  
+  include "footer.php";
   }
 }else{
   include "vista/login.php";

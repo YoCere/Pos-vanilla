@@ -18,4 +18,8 @@ class ControladorUsuario{
             }
         }
     }
+    static public function ctrInfoUsuarios(){
+        $respuesta=ModeloUsuario::mdlInfoUsuarios();
+        return $respuesta;
+    }
 }

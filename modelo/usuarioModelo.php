@@ -10,4 +10,10 @@ class ModeloUsuario{
         return $stmt->fetch();
         
     }
+    static public function mdlInfoUsuarios(){
+        $stmt=Conexion::conectar()->prepare("select * from usuario");
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }
