@@ -7,9 +7,14 @@ class ControladorUsuario{
             $password=$_POST["password"];
             $resultado=ModeloUsuario::mdlAccesoUsuario($usuario);
 
-            if($resultado["login_usuario"] == $usuario && $resultado["password"==$password] && $resultado["estado"]==1){
-                echo "Acceso correcto";
+            if($resultado["login_usuario"] == $usuario && $resultado["password"]==$password && $resultado["estado"]==1){
+                echo '<script>
+                
+                window.location="inicio";
 
+                </script>';
+            }else{
+                echo "Acceso incorrecto: contraseña incorrecta";
             }
         }
     }
