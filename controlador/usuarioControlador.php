@@ -40,7 +40,7 @@ class ControladorUsuario{
             "password"=>$password,
             "perfil"=>"Moderador"
         );
-        var_dump($data);
-        //ModeloUsuario::mdlRegUsuario($date);
+        $respuesta=ModeloUsuario::mdlRegUsuario($data);
+        echo $respuesta;
     }
 }
