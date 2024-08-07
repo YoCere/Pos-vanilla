@@ -1,4 +1,13 @@
 <?php
+$ruta=parse_url($_SERVER["REQUEST_URI"]);
+
+if(isset($ruta["query"])){
+    if($ruta["query"]=="ctrRegUsuario"){
+        $metodo=$ruta["query"];
+        $usuario=new ControladorUsuario();
+        $usuario->$metodo();
+    }
+}
 
 class ControladorUsuario{
     static public function ctrIngresoUsuario(){
@@ -21,5 +30,17 @@ class ControladorUsuario{
     static public function ctrInfoUsuarios(){
         $respuesta=ModeloUsuario::mdlInfoUsuarios();
         return $respuesta;
+    }
+    static public function ctrRegUsuario(){
+        require "../modelo/usuarioModelo.php";
+        $password=password_hash($_POST["password"],PASSWORD_DEFAULT);
+
+        $data=array(
+            "loginUsuario"=>$_POST["login"],
+            "password"=>$password,
+            "perfil"=>"Moderador"
+        );
+        var_dump($data);
+        //ModeloUsuario::mdlRegUsuario($date);
     }
 }

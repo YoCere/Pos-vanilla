@@ -16,4 +16,7 @@ class ModeloUsuario{
 
         return $stmt->fetchAll();
     }
+    static public function mdlRegUsuario($data){
+        
+    }
 }
