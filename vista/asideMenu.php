@@ -67,6 +67,12 @@
                 </a>
               </li>
             </ul>
+            <li class="nav-item">
+            <a href="salir" class="nav-link">
+              <i class="fas fa-door-open nav-icon"></i>
+                  <p>Salir</p>
+            </a>
+          </li>
           </li>
          
         </ul>

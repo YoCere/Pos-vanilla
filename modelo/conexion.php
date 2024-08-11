@@ -1,5 +1,5 @@
 <?php
-class conexion{
+class Conexion{
     static public function conectar(){
         $host="localhost";
         $db="pos";
