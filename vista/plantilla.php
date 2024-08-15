@@ -32,6 +32,7 @@ if(isset($_SESSION["ingreso"]) && $_SESSION["ingreso"]=="ok"){
 
     if($_GET["ruta"]=="inicio"||
        $_GET["ruta"]=="salir"||
+       $_GET["ruta"]=="VCliente"||
        $_GET["ruta"]=="VUsuario"){
       include "asideMenu.php";
 

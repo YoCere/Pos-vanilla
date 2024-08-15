@@ -16,6 +16,7 @@
 <!-- Bootstrap 4 -->
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<script src="assest/dist/js/adminlte.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -33,7 +34,11 @@
 <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
+<!--==================================-->
 <script src="assets/js/usuario.js"></script>
+<script src="assets/js/cliente.js"></script>
+<script src="assets/js/producto.js"></script>
+<script src="assets/js/factura.js"></script>
 <!--==================================
 Seccion de modals
 =====================================-->
