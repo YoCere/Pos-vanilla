@@ -1,9 +1,9 @@
-function MNuevoUsuario(){
+function MNuevoCliente(){
     $("#modal-default").modal("show")
     var obj=""
     $.ajax({
         type:"POST",
-        url:"vista/usuario/FNuevoUsuario.php",
+        url:"vista/cliente/FNuevoCliente.php",
         data:obj,
         success:function(data){
             $("#content-default").html(data)
@@ -11,12 +11,12 @@ function MNuevoUsuario(){
     })
 }
 
-function regUsuario(){
-    var formData=new FormData($("#FRegUsuario")[0])
+function regCliente(){
+    var formData=new FormData($("#FRegCliente")[0])
     if(formData.get("password")==formData.get("vrPassword")){
         $.ajax({
             type:"POST",
-            url:"controlador/usuarioControlador.php?ctrRegUsuario",
+            url:"controlador/ClienteControlador.php?ctrRegCliente",
             data:formData,
             cache:false,
             contentType:false,
@@ -24,7 +24,7 @@ function regUsuario(){
             success:function(data){
                 if(data="ok"){
                     Swal.fire({
-                        title: "Usuario registrado correctamente",
+                        title: "Cliente registrado correctamente",
                         width: 600,
                         padding: "3em",
                         color: "#716add",
@@ -52,7 +52,7 @@ function regUsuario(){
     }
 }
 
-function MEditUsuario(id){
+function MEditCliente(id){
 
     $("#modal-default").modal("show");
    
@@ -60,7 +60,7 @@ function MEditUsuario(id){
     $.ajax({
    
        type:"POST",
-       url:"vista/usuario/FEditUsuario.php?id="+id,
+       url:"vista/uliente/FEditCliente.php?id="+id,
        data: obj,
        success: function(data) {
            $("#content-default").html(data);
@@ -71,13 +71,13 @@ function MEditUsuario(id){
 
     
 } //final
-function editUsuario(){
+function editCliente(){
     console.log("Hola")
-    var formData=new FormData($("#FEditUsuario")[0])
+    var formData=new FormData($("#FEditCliente")[0])
     if(formData.get("password")==formData.get("vrPassword")){
         $.ajax({
             type:"POST",
-            url:"controlador/usuarioControlador.php?ctrEditUsuario",
+            url:"controlador/clienteControlador.php?ctrEditCliente",
             data:formData,
             cache:false,
             contentType:false,
@@ -85,7 +85,7 @@ function editUsuario(){
             success:function(data){
                 if(data="ok"){
                     Swal.fire({
-                        title: "Usuario actualizado correctamente",
+                        title: "Cliente actualizado correctamente",
                         width: 600,
                         padding: "3em",
                         color: "#716add",
@@ -112,12 +112,12 @@ function editUsuario(){
         })
     }
 }
-function MEliUsuario(id){
+function MEliCliente(id){
     var obj={
         id:id
     }
     Swal.fire({
-        title:"Estas seguro de eliminar este usuario",
+        title:"Estas seguro de eliminar este uliente",
         showDenyButton:true,
         showCancelButton:false,
         confirmButtonTex:'Confirmar',
@@ -126,14 +126,14 @@ function MEliUsuario(id){
             if(result.isConfirmed){
                 $.ajax({
                     type:"POST",
-                    url:"controlador/usuarioControlador.php?ctrEliUsuario",
+                    url:"controlador/clienteControlador.php?ctrEliCliente",
                     data:obj,
                     success:function(data){
                     if(data=="ok"){
                         location.reload()
                         }else{
                             Swal.fire({
-                                icon: "El usuario pudo ser eliminado",
+                                icon: "El uliente pudo ser eliminado",
                                 title: "Oops...",
                                 text: "Something went wrong!",
                                 footer: '<a href="#">Why do I have this issue?</a>',
