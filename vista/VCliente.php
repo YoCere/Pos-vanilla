@@ -38,7 +38,7 @@
                   <tbody>
                     <?php
                     $cliente= ControladorCliente::ctrInfoClientes();
-                    foreach($usuario as $value){
+                    foreach($cliente as $value){
                         ?>
                         <tr>
                             <td><?php echo $value["id_cliente"];?></td>
