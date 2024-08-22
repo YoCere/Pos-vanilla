@@ -1,24 +1,35 @@
-<form action="" id="FRegUsuario">
+<form action="" id="FRegCliente">
   <div class="modal-header">
-    <h4 class="modal-title">Registro de nuevo usuario</h4>
+    <h4 class="modal-title">Registro de nuevo Cliente</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div class="form-group">
-      <label for="login">Login Usuario</label>
-      <input type="text" class="form-control" name="login" id="login">
+  <div class="form-group">
+      <label for="login">Razon social cliente</label>
+      <input type="text" class="form-control" name="razon_social_cliente" id="razon_social_client">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" id="password">
+      <label for="login">NIT CI cliente</label>
+      <input type="text" class="form-control" name="nit_ci_cliente" id="nit_ci_cliente">
     </div>
     <div class="form-group">
-      <label for="vrPassword">Repetir Password</label>
-      <input type="password" class="form-control" name="vrPassword" id="vrPassword">
+      <label for="login">direccion_cliente</label>
+      <input type="text" class="form-control" name="direccion_cliente" id="direccion_cliente">
     </div>
-  </div>
+    <div class="form-group">
+      <label for="login">Nombre Cliente</label>
+      <input type="text" class="form-control" name="nombre_cliente" id="nombre_cliente">
+    </div>
+    <div class="form-group">
+      <label for="login">Telefono Cliente</label>
+      <input type="text" class="form-control" name="telefono_cliente" id="telefono_cliente">
+    </div>
+    <div class="form-group">
+      <label for="login">Email Cliente</label>
+      <input type="text" class="form-control" name="email_cliente" id="email_cliente">
+    </div>
   <div class="modal-footer justify-content-between">
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -28,10 +39,10 @@
 $(function () {
   $.validator.setDefaults({
     submitHandler: function () {
-      regUsuario();
+      regCliente();
     }
   });
-  $('#FRegUsuario').validate({
+  $('#FRegCliente').validate({
     rules: {
       login: {
         required: true,

@@ -13,7 +13,6 @@ function MNuevoCliente(){
 
 function regCliente(){
     var formData=new FormData($("#FRegCliente")[0])
-    if(formData.get("password")==formData.get("vrPassword")){
         $.ajax({
             type:"POST",
             url:"controlador/ClienteControlador.php?ctrRegCliente",
@@ -49,7 +48,6 @@ function regCliente(){
                 }
             }
         })
-    }
 }
 
 function MEditCliente(id){

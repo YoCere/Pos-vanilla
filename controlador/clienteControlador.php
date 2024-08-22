@@ -19,12 +19,14 @@ class ControladorCliente{
     }
     static public function ctrRegCliente(){
         require "../modelo/clienteModelo.php";
-        $password=password_hash($_POST["password"],PASSWORD_DEFAULT);
-
+        
         $data=array(
-            "loginCliente"=>$_POST["login"],
-            "password"=>$password,
-            "perfil"=>"Moderador"
+            "razon_social_cliente"=>$_POST["razon_social_cliente"],
+            "nit_ci_cliente"=>$_POST["nit_ci_cliente"],
+            "direccion_cliente"=>$_POST["direccion_cliente"],
+            "nombre_cliente"=>$_POST["nombre_cliente"],
+            "telefono_cliente"=>$_POST["telefono_cliente"],
+            "email_cliente"=>$_POST["email_cliente"]
         );
         $respuesta=ModeloCliente::mdlRegCliente($data);
         echo $respuesta;

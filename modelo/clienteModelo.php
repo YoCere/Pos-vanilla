@@ -11,12 +11,15 @@ class ModeloCliente{
         return $stmt->fetchAll();
     }
     static public function mdlRegCliente($data){
-        $loginCliente=$data["loginCliente"];
-        $password=$data["password"];
-        $perfil=$data["perfil"];
+        $razon_social_cliente=$data["razon_social_cliente"];
+        $nit_ci_cliente=$data["nit_ci_cliente"];
+        $direccion_cliente=$data["direccion_cliente"];
+        $nombre_cliente=$data["nombre_cliente"];
+        $telefono_cliente=$data["telefono_cliente"];
+        $email_cliente=$data["email_cliente"];        
 
-        $stmt=Conexion::conectar()->prepare("insert into Cliente(login_cliente, password, perfil) 
-        values ('$loginCliente', '$password','$perfil')");
+        $stmt=Conexion::conectar()->prepare("insert into Cliente(razon_social_cliente, nit_ci_cliente, direccion_cliente, nombre_cliente, telefono_cliente, email_cliente) 
+        values ('$razon_social_cliente','$nit_ci_cliente','$direccion_cliente','$nombre_cliente','$telefono_cliente','$email_cliente')");
         if($stmt->execute()){
             return "ok";
         }else{

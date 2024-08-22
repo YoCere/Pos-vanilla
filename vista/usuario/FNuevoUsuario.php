@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <label for="login">Login Usuario</label>
+      <label for="login">Nuevo</label>
       <input type="text" class="form-control" name="login" id="login">
     </div>
     <div class="form-group">
