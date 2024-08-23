@@ -39,13 +39,7 @@
             <label for="imagen_producto">imagen_producto</label>
             <input type="text" class="form-control" name="imagen_producto" id="imagen_producto">
         </div>
-        <div class="form-group">
-            <label for="disponible">Disponible</label>
-            <select class="form-control" name="disponible" id="disponible">
-                <option value="1">Sí</option>
-                <option value="0">No</option>
-            </select>
-        </div>
+        
     </div>
 
     <div class="modal-footer justify-content-between">

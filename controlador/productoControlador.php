@@ -28,7 +28,7 @@ class ControladorProducto{
             "unidad_medida" => $_POST["unidad_medida"],
             "unidad_medida_sin" => $_POST["unidad_medida_sin"],
             "imagen_producto" => $_POST["imagen_producto"],
-            "disponible" => $_POST["disponible"]
+           
             
         );
         $respuesta=ModeloProducto::mdlRegProducto($data);
@@ -38,21 +38,26 @@ class ControladorProducto{
         $respuesta=ModeloProducto::mdlInfoProducto($id);
         return $respuesta;
     }
-    static public function ctrEditProducto(){
+    static function ctrEditProducto()
+    {
         require "../modelo/productoModelo.php";
-        if($_POST["password"]==$_POST["password"]){
-            $password=$_POST["password"];
-        }else{
-            $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
-        }
-        $data=array(
-            "password"=>$password,
-            "id"=>$_POST["idProducto"],
-            "perfil"=>$_POST["perfil"],
-            "estado"=>$_POST["estado"]
-        );
+
+        $data = array(
+        "cod_producto" => $_POST["cod_producto"],
+        "cod_producto_sin" => $_POST["cod_producto_sin"],
+        "nombre_producto" => $_POST["nombre_producto"],
+        "precio_producto" => $_POST["precio_producto"],
+        "unidad_medida" => $_POST["unidad_medida"],
+        "unidad_medida_sin" => $_POST["unidad_medida_sin"],
+        "imagen_producto" => $_POST["imagen_producto"],
+        "disponible" => $_POST["disponible"],
+        "id_producto" => $_POST["id_producto"] 
+    );
+    
         ModeloProducto::mdlEditProducto($data);
-        //echo $respuesta;
+        $respuesta = ModeloProducto::mdlEditProducto($data);
+
+        echo $respuesta;
     }
     static public function ctrEliProducto(){
         require "../modelo/productoModelo.php";

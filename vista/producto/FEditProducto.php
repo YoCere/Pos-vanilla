@@ -1,87 +1,99 @@
 <?php
-
-require_once "../../controlador/usuarioControlador.php";
-require_once "../../modelo/usuarioModelo.php";
+require_once "../../controlador/productoControlador.php";
+require_once "../../modelo/productoModelo.php";
 
 $id=$_GET["id"];
-$usuario=ControladorUsuario::ctrInfoUsuario($id);
+$producto=ControladorProducto::ctrInfoProducto($id);
 
 ?>
-<form action="" id="FEditUsuario">
-            <div class="modal-header">
-              <h4 class="modal-title">Registro Nuevo Usuario</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">Login Usuario</label>
-                <input type="text" class="form-control" name="login" id="login" value="<?php echo $usuario["login_usuario"];?>" readonly>
-                <input type="hidden" name="idUsuario" value="<?php echo $usuario["id_usuario"]; ?>">
-              </div>
-              <div class="form-group">
-                <label for="">Contraseña</label>
-                <input type="password" class="form-control" name="password" id="password" value="<?php echo $usuario["password"];?>">
-              </div>
-              <div class="form-group">
-                <label for="">Repetir Contraseña</label>
-                <input type="password" class="form-control" name="vrPassword" id="vrPassword" value="<?php echo $usuario["password"];?>">
-            <input type="hidden" value="<?php echo $usuario["password"];?>" name="passActual">  
-            </div>
-              <div class="form-group">
-                <label for="">Perfil</label>
-                <select name="perfil" id="perfil" class="form-control">
-                    <option value="Administrador" <?php if($usuario["perfil"]=="Administrador"):?>selected<?php endif;?>
-                        >Administrador</option>
-                    <option value="Moderador"  <?php if($usuario["perfil"]=="Moderador"):?>selected<?php endif;?>
-                        >Moderador </option>
-                </select>
-              </div>
-              <div class="form-group">
+
+<form action="" id="FEditProducto">
+            <form action="" method="post" id="FEditProducto">
+    <div class="modal-header bg-primary">
+        <h4 class="modal-title">Editar Producto</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- Otros campos del formulario -->
+
+        <div class="form-group">
+            <label for="cod_producto">Codigo del producto</label>
+            <input type="text" class="form-control" name="cod_producto" id="cod_producto" value="<?php echo $producto["cod_producto"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="cod_producto_sin">Codigo del producto sin</label>
+            <input type="number" class="form-control" name="cod_producto_sin" id="cod_producto_sin" value="<?php echo $producto["cod_producto_sin"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre_producto">Nombre del producto</label>
+            <input type="text" class="form-control" name="nombre_producto" id="nombre_producto" value="<?php echo $producto["nombre_producto"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="precio_producto">Precio del producto</label>
+            <input type="number" class="form-control" name="precio_producto" id="precio_producto" value="<?php echo $producto["precio_producto"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="unidad_medida">Unidad de Medida</label>
+            <input type="text" class="form-control" name="unidad_medida" id="unidad_medida" value="<?php echo $producto["unidad_medida"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="unidad_medida_sin">Unidad de Medida SIN</label>
+            <input type="number" class="form-control" name="unidad_medida_sin" id="unidad_medida_sin" value="<?php echo $producto["unidad_medida_sin"]; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="imagen_producto">Imagen del Producto</label>
+            <input type="text" class="form-control" name="imagen_producto" id="imagen_producto" value="<?php echo $producto["imagen_producto"]; ?>">
+        </div>
+
+        <div class="form-group">
               
-              <label for="">Estado</label>
+              <label for="">Disponibilidad</label>
 
         <div class="row">
         <div class="col-sm-6">
         <div class="custom-control custom-radio">
-         <input class="custom-control-input" type="radio" id="estadoActivo" name="estado"
-         <?php if($usuario["estado"]=="1"):?>checked<?php endif;?> value="1">
-        <label for="estadoActivo" class="custom-control-label">Activo</label>
+         <input class="custom-control-input" type="radio" id="disponible" name="disponible"
+         <?php if($producto["disponible"]=="1"):?>checked<?php endif;?> value="1">
+        <label for="disponible" class="custom-control-label">Disponible</label>
         </div>
         </div>
 
         <div class="col-sm-6">
         <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" id="estadoInactivo" name="estado" 
-        <?php if($usuario["estado"]=="0"):?>checked<?php endif;?> value="0">
-        <label for="estadoInactivo" class="custom-control-label">Inactivo</label>
+        <input class="custom-control-input" type="radio" id="Nodisponible" name="disponible" 
+        <?php if($producto["disponible"]=="0"):?>checked<?php endif;?> value="0">
+        <label for="Nodisponible" class="custom-control-label">No disponible</label>
         </div>
         </div>
         </div>
+        </div>
 
-        
-        
+        <!-- Campo oculto para el ID del producto -->
+        <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $producto['id_producto']; ?>">
+    </div>
 
-        
-
-
-            </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
 </form>
 
 <script>
 $(function () {
   $.validator.setDefaults({
     submitHandler: function () {
-      editUsuario()
+      editProducto()
     }
   });
-  $('#FEditUsuario').validate({
+  $('#FEditProducto').validate({
     rules: {
       password: {
         required: true,

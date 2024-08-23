@@ -27,11 +27,11 @@
                     <th>#</th>
                     <th>cod_producto</th>
                     <th>cod_producto_sin</th>
-                    <th>nombre</th>
+                    <th>Nom</th>
                     <th>precio</th>
-                    <th>unidad medida</th>
+                    <th>U. medida</th>
                     <th>imagen</th>
-                    <th>disponible</th>
+                    <th>Disp.</th>
                     <td>
                         <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
                     </td>
@@ -50,7 +50,16 @@
                             <td><?php echo $value["unidad_medida"];?></td>
                             <td><?php echo $value["unidad_medida_sin"];?></td>
                             <td><?php echo $value["imagen_producto"];?></td>
-                            <td><?php echo $value["disponible"];?></td>
+                            <td><?php 
+                            if($value['disponible']==1){
+                            ?>
+                            <span class="badge badge-success">Si</span>
+                          <?php  
+                          }else{
+                            ?>
+                            <span class="badge badge-danger">No</span>
+                          <?php
+                          }?></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"];?>)" >
