@@ -37,19 +37,20 @@ class ControladorCliente{
     }
     static public function ctrEditCliente(){
         require "../modelo/clienteModelo.php";
-        if($_POST["password"]==$_POST["password"]){
-            $password=$_POST["password"];
-        }else{
-            $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
-        }
+        
         $data=array(
-            "password"=>$password,
-            "id"=>$_POST["idCliente"],
-            "perfil"=>$_POST["perfil"],
-            "estado"=>$_POST["estado"]
+            "razon_social_cliente"=>$_POST["razon_social_cliente"],
+            "nit_ci_cliente"=>$_POST["nit_ci_cliente"],
+            "direccion_cliente"=>$_POST["direccion_cliente"],
+            "nombre_cliente"=>$_POST["nombre_cliente"],
+            "telefono_cliente"=>$_POST["telefono_cliente"],
+            "email_cliente"=>$_POST["email_cliente"],
+            "idCliente"=>$_POST["idCliente"]
+            
+            
         );
         ModeloCliente::mdlEditCliente($data);
-        //echo $respuesta;
+        
     }
     static public function ctrEliCliente(){
         require "../modelo/ClienteModelo.php";

@@ -53,12 +53,10 @@ function regCliente(){
 function MEditCliente(id){
 
     $("#modal-default").modal("show");
-   
     var obj="";
     $.ajax({
-   
        type:"POST",
-       url:"vista/uliente/FEditCliente.php?id="+id,
+       url:"vista/cliente/FEditCliente.php?id="+id,
        data: obj,
        success: function(data) {
            $("#content-default").html(data);
@@ -72,7 +70,6 @@ function MEditCliente(id){
 function editCliente(){
     console.log("Hola")
     var formData=new FormData($("#FEditCliente")[0])
-    if(formData.get("password")==formData.get("vrPassword")){
         $.ajax({
             type:"POST",
             url:"controlador/clienteControlador.php?ctrEditCliente",
@@ -109,7 +106,7 @@ function editCliente(){
             }
         })
     }
-}
+
 function MEliCliente(id){
     var obj={
         id:id

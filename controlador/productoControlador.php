@@ -19,12 +19,17 @@ class ControladorProducto{
     }
     static public function ctrRegProducto(){
         require "../modelo/productoModelo.php";
-        $password=password_hash($_POST["password"],PASSWORD_DEFAULT);
 
         $data=array(
-            "loginproducto"=>$_POST["login"],
-            "password"=>$password,
-            "perfil"=>"Moderador"
+            "cod_producto" => $_POST["cod_producto"],
+            "cod_producto_sin" => $_POST["cod_producto_sin"],
+            "nombre_producto" => $_POST["nombre_producto"],
+            "precio_producto" => $_POST["precio_producto"],
+            "unidad_medida" => $_POST["unidad_medida"],
+            "unidad_medida_sin" => $_POST["unidad_medida_sin"],
+            "imagen_producto" => $_POST["imagen_producto"],
+            "disponible" => $_POST["disponible"]
+            
         );
         $respuesta=ModeloProducto::mdlRegProducto($data);
         echo $respuesta;

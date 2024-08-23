@@ -9,7 +9,7 @@ $usuario=ControladorUsuario::ctrInfoUsuario($id);
 ?>
 <form action="" id="FEditUsuario">
             <div class="modal-header">
-              <h4 class="modal-title">Registro Nuevo Usuario</h4>
+              <h4 class="modal-title">Edicion de datos del Usuario</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

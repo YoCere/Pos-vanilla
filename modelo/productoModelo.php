@@ -11,15 +11,22 @@ class Modeloproducto{
         return $stmt->fetchAll();
     }
     static public function mdlRegProducto($data){
-        $loginProducto=$data["loginProducto"];
-        $password=$data["password"];
-        $perfil=$data["perfil"];
-
-        $stmt=Conexion::conectar()->prepare("insert into producto(login_producto, password, perfil) 
-        values ('$loginProducto', '$password','$perfil')");
-        if($stmt->execute()){
+        $codProducto = $data["cod_producto"];
+        $codProductoSin = $data["cod_producto_sin"];
+        $nombreProducto = $data["nombre_producto"];
+        $precioProducto = $data["precio_producto"];
+        $unidadMedida = $data["unidad_medida"];
+        $unidadMedidaSin = $data["unidad_medida_sin"];
+        $imagenProducto = $data["imagen_producto"];
+        $disponible = $data["disponible"];
+        
+        $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto, disponible) 
+        VALUES ('$codProducto', '$codProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto', '$disponible')");
+        
+        if ($stmt->execute()) {
             return "ok";
-        }else{
+        } else {
+            print_r($stmt->errorInfo()); // Esto mostrará el error SQL si ocurre
             return "error";
         }
 
