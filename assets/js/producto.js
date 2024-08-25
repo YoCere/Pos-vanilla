@@ -50,10 +50,6 @@ function regProducto() {
             })
 
     }
-   
-
-
-
 function MEditProducto(id){
 
     $("#modal-default").modal("show");
@@ -143,4 +139,51 @@ function MEliProducto(id){
                 })
             }
     })
+}
+function SinCatalogo(){
+    var obj={
+        codigoAmbiente:2,
+        codigoPuntoVenta: 0,
+        codigoPuntoVentaSpecified: true,
+        codigoSistema: "775FA42BE90F7B78EF98F57",
+        cuis: "9272DC05",
+        nit: 338794023
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/Sincronizacion/listaproductosservicios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w",
+        data: JSON.stringify(obj),
+        cache: false,
+        contentType: "application/json",
+        success: function(data){
+            console.log(data)
+            for(var i=0;i<data["listaCodigos"].length; i++){
+                $("#CatProductos").append("<tr><td>"+data["listaCodigos"][i]["codigoActividad"]+"</td><td>"+data["listaCodigos"][i]["codigoProducto"]+"</td><td>"+data["listaCodigos"][i]["descripcionProducto"]+"</td><td></td></tr>")
+            }
+         }
+     })
+}
+
+function unidadMedida(){
+    var obj={
+        codigoAmbiente:2,
+        codigoPuntoVenta: 0,
+        codigoPuntoVentaSpecified: true,
+        codigoSistema: "775FA42BE90F7B78EF98F57",
+        cuis: "9272DC05",
+        nit: 338794023
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/Sincronizacion/unidadMedida?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w",
+        data: JSON.stringify(obj),
+        cache: false,
+        contentType: "application/json",
+        success: function(data){
+            console.log(data)
+            
+         }
+     })
 }
