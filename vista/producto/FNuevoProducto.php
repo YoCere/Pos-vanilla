@@ -7,38 +7,58 @@
     </div>
     <div class="modal-body">
         <!-- Otros campos del formulario -->
-        <div class="form-group">
+         <div class="form-inline form-row">
+        <div class="form-group col-sm-5 mr-5">
             <label for="cod_producto">Codigo del producto</label>
             <input type="text" class="form-control" name="cod_producto" id="cod_producto" >
-        </div>
+        </div >
 
-        <div class="form-group">
+        <div class="form-group col-sm-5 mr-3" >
             <label for="cod_producto_sin	">Codigo del producto sin</label>
             <input type="number" class="form-control" name="cod_producto_sin" id="cod_producto_sin">
         </div>
-
+        </div>
         <div class="form-group">
-            <label for="nombre_producto">Nombre del producto</label>
-            <input type="text" class="form-control" name="nombre_producto" id="nombre_producto">
+            <label for="nombre_producto">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="descripcion">
         </div>
 
-        <div class="form-group">
+        <div class="form-inline form-row">
+        <div class="form-group col-sm-5 mr-5">
             <label for="precio_producto">Precio del producto</label>
             <input type="number" class="form-control" name="precio_producto" id="precio_producto" step="0.01">
         </div>
-
-        <div class="form-group">
+        <div class="form-group col-sm-5 mr-3">
             <label for="unidad_medida">Unidad de medida</label>
             <input type="text" class="form-control" name="unidad_medida" id="unidad_medida" >
+        </div>
         </div>
         <div class="form-group">
             <label for="unidad_medida_sin">Unidad de medida sin</label>
             <input type="number" class="form-control" name="unidad_medida_sin" id="unidad_medida_sin" >
         </div>
-        <div class="form-group">
-            <label for="imagen_producto">imagen_producto</label>
-            <input type="text" class="form-control" name="imagen_producto" id="imagen_producto">
-        </div>
+        <div class="form-inline form-row ">
+          <div class="form-group mr-3">
+                    <label for="exampleInputFile">Subir imagen dell producto</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input  " id="imgProducto" name="imgProducto" onchange="previsualizar()">
+                            <label class="custom-file-label" for="imgProducto">Elegir archivo</label>
+                          </div>
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-6 mr-3">
+                      <div class="form-group" style="text-align: center;">
+                          <img src="assets/dist/img/producto.png" alt="" width="150" class="img-thumbail previsualizar">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+        
+        
         
     </div>
 
@@ -57,13 +77,25 @@ $(function () {
   });
   $('#FRegProducto').validate({
     rules: {
-      password: {
+      cod_producto: {
         required: true,
         minlength: 3
       },
-      vrPassword: {
+      cod_producto_sin: {
+        required: true,
+        minlength: 1
+      },
+      descripcion: {
         required: true,
         minlength: 3
+      },
+      unidad_medida: {
+        required: true,
+        minlength: 1
+      },
+      unidad_medida_sin: {
+        required: true,
+        minlength: 1
       },
     },
     errorElement: 'span',
@@ -79,4 +111,18 @@ $(function () {
     }
   });
 });
+
+function previsualizar() {
+    const imgInput = document.getElementById('imgProducto');
+    const imgPreview = document.querySelector('.previsualizar');
+
+    if (imgInput.files && imgInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imgPreview.src = e.target.result;
+        }
+        reader.readAsDataURL(imgInput.files[0]);
+    }
+}
+
 </script>

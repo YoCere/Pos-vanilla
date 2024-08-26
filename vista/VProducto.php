@@ -24,12 +24,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>#</th>
                     <th>cod_producto</th>
                     <th>cod_producto_sin</th>
-                    <th>Nom</th>
+                    <th>Descripcion</th>
                     <th>precio</th>
                     <th>U. medida</th>
+                    <th>U. medida sin</th>
                     <th>imagen</th>
                     <th>Disp.</th>
                     <td>
@@ -45,11 +45,21 @@
                         <tr>
                             <td><?php echo $value["cod_producto"];?></td>
                             <td><?php echo $value["cod_producto_sin"];?></td>
-                            <td><?php echo $value["nombre_producto"];?></td>
+                            <td><?php echo $value["descripcion"];?></td>
                             <td><?php echo $value["precio_producto"];?></td>
                             <td><?php echo $value["unidad_medida"];?></td>
                             <td><?php echo $value["unidad_medida_sin"];?></td>
-                            <td><?php echo $value["imagen_producto"];?></td>
+                            <td><?php
+                            if($value["imagen_producto"]==""){
+                              ?>
+                              <img src="assets/dist/img/producto.png" alt="" width="50" class="img-thumbail">
+                              <?php
+                            }else{
+                              ?>
+                              <img src="assets/dist/img/productos/<?php echo $value["imagen_producto"];?>" alt="" width="50" class="img-thumbail">
+                              <?php
+                            }
+                            ?></td>
                             <td><?php 
                             if($value['disponible']==1){
                             ?>

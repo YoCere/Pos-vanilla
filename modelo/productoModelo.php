@@ -13,15 +13,15 @@ class Modeloproducto{
     static public function mdlRegProducto($data){
         $codProducto = $data["cod_producto"];
         $codProductoSin = $data["cod_producto_sin"];
-        $nombreProducto = $data["nombre_producto"];
+        $descripcion = $data["descripcion"];
         $precioProducto = $data["precio_producto"];
         $unidadMedida = $data["unidad_medida"];
         $unidadMedidaSin = $data["unidad_medida_sin"];
         $imagenProducto = $data["imagen_producto"];
         
         
-        $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) 
-        VALUES ('$codProducto', '$codProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto')");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, descripcion, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) 
+        VALUES ('$codProducto', '$codProductoSin', '$descripcion', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto')");
         
         if ($stmt->execute()) {
             return "ok";
@@ -50,7 +50,7 @@ class Modeloproducto{
 
         $cod_producto = $data["cod_producto"];
         $od_producto_sin = $data["cod_producto_sin"];
-        $nombre_producto = $data["nombre_producto"];
+        $descripcion = $data["descripcion"];
         $precio_producto = $data["precio_producto"];
         $unidad_medida = $data["unidad_medida"];
         $unidad_medida_sin = $data["unidad_medida_sin"];
@@ -64,7 +64,7 @@ class Modeloproducto{
         SET 
             cod_producto = ' $cod_producto', 
             cod_producto_sin = ' $od_producto_sin', 
-            nombre_producto = '$nombre_producto', 
+            descripcion = '$descripcion', 
             precio_producto = ' $precio_producto ', 
             unidad_medida = '$unidad_medida', 
             unidad_medida_sin = '$unidad_medida_sin', 
