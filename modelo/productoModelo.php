@@ -48,40 +48,31 @@ class Modeloproducto{
     }
     static public function mdlEditProducto($data){
 
-        $cod_producto = $data["cod_producto"];
-        $od_producto_sin = $data["cod_producto_sin"];
-        $descripcion = $data["descripcion"];
-        $precio_producto = $data["precio_producto"];
-        $unidad_medida = $data["unidad_medida"];
-        $unidad_medida_sin = $data["unidad_medida_sin"];
-        $imagen_producto = $data["imagen_producto"];
-        $disponible = $data["disponible"];
-        $id_producto = $data["id_producto"];
-  
-  
-        $stmt = Conexion::conectar()->prepare("
-        UPDATE producto 
-        SET 
-            cod_producto = ' $cod_producto', 
-            cod_producto_sin = ' $od_producto_sin', 
-            descripcion = '$descripcion', 
-            precio_producto = ' $precio_producto ', 
-            unidad_medida = '$unidad_medida', 
-            unidad_medida_sin = '$unidad_medida_sin', 
-            imagen_producto = '$imagen_producto', 
-            disponible = '$disponible' WHERE id_producto =  $id_producto");
+        $id=$data["idProducto"];
+        $codProductoSIN=$data["codProductoSIN"];
+        $descripcion=$data["descripcion"];
+        $preProducto=$data["preProducto"];
+        $unidadMedidad=$data["unidadMedidad"];
+        $unidadMedidadSIN=$data["unidadMedidadSIN"];
+        $estado=$data["estado"];
+        $imgProducto=$data["imgProducto"];
     
-  
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
-      }
-  
-      $stmt->close();
-      $stmt->null();
+    
+    $stmt=Conexion::conectar()->prepare("update producto set cod_producto_sin='$codProductoSIN',
+     descripcion='$descripcion', precio_producto='$preProducto', unidad_medida='$unidadMedidad', unidad_medida_sin='$unidadMedidadSIN', imagen_producto='$imgProducto', disponible='$estado'
+    where id_producto=$id");
+    
+            if($stmt->execute()){
+                return "ok";
+            }
+            else{
+                return "error";
+            }
+    /* 
+            $stmt->close();
+            $stmt->null();
+     */
     }
-    
     static public function mdlEliProducto($id){
         $stmt=Conexion::conectar()->prepare("delete from producto where id_producto=$id");
 

@@ -70,14 +70,14 @@ function MEditProducto(id){
 function editProducto(){
     console.log("Hola")
     var formData=new FormData($("#FEditProducto")[0])
-        $.ajax({
-            type:"POST",
-            url:"controlador/productoControlador.php?ctrEditProducto",
-            data:formData,
-            cache:false,
-            contentType:false,
-            processData:false,
-            success:function(data){
+    $.ajax({
+       type:"POST",
+       url:"controlador/productoControlador.php?ctrEditProducto",
+       data: formData,
+       cache:false,
+       contentType:false,
+       processData:false,
+       success: function(data) {
                 if(data="ok"){
                     Swal.fire({
                         title: "producto actualizado correctamente",
@@ -188,3 +188,17 @@ function unidadMedida(){
      })
 }
 
+function MVerProducto(id){
+    $("#modal-default").modal("show");
+   
+    var obj="";
+    $.ajax({
+   
+       type:"POST",
+       url:"vista/producto/MVerProducto.php?id="+id,
+       data: obj,
+       success: function(data) {
+           $("#content-default").html(data);
+       }
+    })
+}

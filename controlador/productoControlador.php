@@ -41,27 +41,34 @@ class ControladorProducto{
         $respuesta=ModeloProducto::mdlInfoProducto($id);
         return $respuesta;
     }
-    static function ctrEditProducto()
-    {
+    static function ctrEditProducto(){
         require "../modelo/productoModelo.php";
-
-        $data = array(
-        "cod_producto" => $_POST["cod_producto"],
-        "cod_producto_sin" => $_POST["cod_producto_sin"],
-        "descripcion" => $_POST["descripcion"],
-        "precio_producto" => $_POST["precio_producto"],
-        "unidad_medida" => $_POST["unidad_medida"],
-        "unidad_medida_sin" => $_POST["unidad_medida_sin"],
-        "imagen_producto" => $_POST["imagen_producto"],
-        "disponible" => $_POST["disponible"],
-        "id_producto" => $_POST["id_producto"] 
-    );
     
-        ModeloProducto::mdlEditProducto($data);
-        $respuesta = ModeloProducto::mdlEditProducto($data);
-
-        echo $respuesta;
+        $imagen=$_FILES["imgProducto"];
+        if($imagen["name"]==""){
+        $imgNombre=$_POST["imgActual"];
+        }else{
+            $imgNombre=$imagen["name"];
+            $imgTmp=$imagen["tmp_name"];
+            move_uploaded_file($imgTmp,"../assets/dist/img/productos/".$imgNombre);
+        }
+    
+        $data=array(
+            "idProducto"=>$_POST["idProducto"],
+            "codProductoSIN"=>$_POST["codProductoSIN"],
+            "descripcion"=>$_POST["desProducto"],
+            "preProducto"=>$_POST["preProducto"],
+            "unidadMedidad"=>$_POST["unidadMedidad"],
+            "unidadMedidadSIN"=>$_POST["unidadMedidadSIN"],
+            "estado"=>$_POST["estado"],
+            "imgProducto"=>$imgNombre,
+        );
+    
+    
+        $respuesta=ModeloProducto::mdlEditProducto($data);
+        echo $respuesta; 
     }
+    
     static public function ctrEliProducto(){
         require "../modelo/productoModelo.php";
         $id=$_POST["id"];
