@@ -38,7 +38,7 @@
 <script src="assets/js/usuario.js"></script>
 <script src="assets/js/cliente.js"></script>
 <script src="assets/js/producto.js"></script>
-<!--<script src="assets/js/factura.js"></script>-->
+<script src="assets/js/factura.js"></script>
 <!--==================================
 Seccion de modals
 =====================================-->
