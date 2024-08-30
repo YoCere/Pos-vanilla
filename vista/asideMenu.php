@@ -124,7 +124,7 @@
             <ul class="nav nav-treeview">
              
               <li class="nav-item">
-                <a href="VUsuario" class="nav-link">
+                <a href="FormVenta" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Emitir factura</p>
                 </a>
