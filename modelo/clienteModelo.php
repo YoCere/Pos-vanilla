@@ -84,4 +84,15 @@ class ModeloCliente
             return "error";
         }
     }
+
+    static public function mdlBusCliente($nitCliente){
+        $stmt = Conexion::conectar()->prepare("select * from cliente where nit_ci_cliente=$nitCliente");
+        $stmt->execute();
+
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // var_dump($result); 
+        $result = $stmt->fetch();
+
+        return $result;
+    }
 }

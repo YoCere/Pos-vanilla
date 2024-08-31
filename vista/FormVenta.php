@@ -51,15 +51,27 @@
             <div class="form-group col-md-3">
               <label for="">NIT/CI</label>
               <div class="input-group">
-              <input type="text" class="form-control" >
+              <input type="text" class="form-control" list="listaClientes" name="nitCliente" id="nitCliente">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secundary" type="button">
+                  <button class="btn btn-outline-secundary" type="button" onclick="busCliente()">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
               </div>
             </div>
-            
+            <datalist id="listaClientes">
+              <?php
+              $cliente = ControladorCliente::ctrInfoClientes();
+              foreach($cliente as $value){
+                ?>
+                <option value="<?php echo $value["nit_ci_cliente"]?>"><?php echo $value["razon_social_cliente"]?>
+                  </option>
+
+                <?php
+              }
+              ?>
+            </datalist>
+
             <div class="form-group col-md-6">
               <label for="">E-mail</label>
               <input type="email" class="form-control" name="emailCliente" id="emailCliente">

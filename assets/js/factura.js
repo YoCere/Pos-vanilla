@@ -25,3 +25,42 @@ function verificarComunicacion(){
 }
 
 setInterval(verificarComunicacion,3000)
+
+function busCliente(){
+    let nitCliente=document.getElementById("nitCliente").value
+
+    var obj={
+        nitCliente:nitCliente
+    }
+    $.ajax({
+        type:"POST",
+        url:"controlador/clienteControlador.php?ctrBusCliente",
+        data:obj,
+        dataType:"json",
+        success:function(data){
+            if(data["email_cliente"]==""){
+                document.getElementById("emailCliente").value="null"
+            }else{
+                document.getElementById("emailCliente").value=data["email_cliente"]
+            }
+            document.getElementById("rsCliente").value=data["razon_social_cliente"]
+            numFactura()
+        }
+
+    })
+}
+
+//generar numero de factura
+
+function numFactura(){
+    let obj=""
+
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrNumFactura",
+        data:obj,
+        success:function(data){
+            document.getElementById("numFactura").value=data
+        }
+    })
+}
