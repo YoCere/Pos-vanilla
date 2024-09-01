@@ -54,12 +54,13 @@ function busCliente(){
 
 function numFactura(){
     let obj=""
-
+    
     $.ajax({
         type:"POST",
         url:"controlador/facturaControlador.php?ctrNumFactura",
         data:obj,
         success:function(data){
+            console.log(data)
             document.getElementById("numFactura").value=data
         }
     })
