@@ -82,6 +82,9 @@ function busProducto(){
             document.getElementById("uniMedida").value=data["unidad_medida"];
             document.getElementById("preUnitario").value=data["precio_producto"];
 
+            document.getElementById("uniMedidaSin").value=data["unidad_medida_sin"];
+            document.getElementById("codProductoSin").value=data["cod_producto_sin"];
+
             
         }
 
@@ -96,4 +99,39 @@ function calcularPreProducto(){
     let preProducto=preUnit-descProducto
     
     document.getElementById("preTotal").value=preProducto*cantPro
+}
+
+//Carrito-------------------
+var arregloCarrito=[]
+
+function agregarCarrito(){
+    let actEconomica=document.getElementById("actEconomica").value
+    let codProducto=document.getElementById("codProducto").value
+    let codProductoSin=parseInt(document.getElementById("codProductoSin").value)
+    let conceptoPro=document.getElementById("conceptoPro").value
+    let cantProducto=parseInt(document.getElementById("cantProducto").value)
+    let uniMedida=document.getElementById("uniMedida").value
+    let uniMedidaSin=parseInt(document.getElementById("uniMedidaSin").value)
+    let preUnitario=parseFloat(document.getElementById("preUnitario").value)
+    let descProducto=parseFloat(document.getElementById("descProducto").value)
+    let preTotal=parseFloat(document.getElementById("preTotal").value)
+
+    let objDetalle={
+        actividadEconomica:actEconomica,
+        codigoProductoSin:codProductoSin,
+        codigoProducto:codProducto,
+        descripcion:conceptoPro,
+        cantidad:cantProducto,
+        unidadMedida:uniMedida,
+        unidadMedidaSin:uniMedidaSin,
+        precioUnitario:preUnitario,
+        montoDescuento:descProducto,
+        subtotal:preTotal
+    }
+
+    arregloCarrito.push(objDetalle)
+}
+
+function dibujarTablaCarrito(){
+
 }
