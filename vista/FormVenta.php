@@ -230,7 +230,6 @@
                   <th>P. Unitario</th>
                   <th>Descuento</th>
                   <th>P. Total</th>
-                  <th>P. Total</th>
                   <th>&nbsp;</th>
                 </tr>
                 <tbody id="listaDetalle"></tbody>
