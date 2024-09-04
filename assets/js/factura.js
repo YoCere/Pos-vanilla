@@ -170,6 +170,8 @@ function dibujarTablaCarrito(){
 
         listaDetalle.appendChild(fila)
     })
+
+    calcularTotal()
 }
 
 function eliminarCarrito(cod){
@@ -179,4 +181,20 @@ function eliminarCarrito(cod){
         }
     })
     dibujarTablaCarrito()
+}
+
+function calcularTotal(){
+    let totalCarrito=0
+
+    for(var i=0; i<arregloCarrito.length; i++){
+        totalCarrito=totalCarrito+parseFloat(arregloCarrito[i].subtotal)
+    }
+    document.getElementById("subTotal").value=totalCarrito
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    document.getElementById("totApagar").value=totalCarrito-descAdicional
+}
+
+function emitirFactura(){
+    let numFactura=parseInt(document.getElementById("numFactura").value)
+    let 
 }

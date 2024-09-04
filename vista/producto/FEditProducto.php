@@ -32,8 +32,8 @@ $producto = ControladorProducto::ctrInfoProducto($id);
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label for="desProducto">Descripcion</label>
-          <input type="text" class="form-control" name="desProducto" id="desProducto" value="<?php echo $producto["descripcion"]; ?>">
+          <label for="desProducto">nombre</label>
+          <input type="text" class="form-control" name="desProducto" id="desProducto" value="<?php echo $producto["nombre_producto"]; ?>">
         </div>
       </div>
       <div class="row">

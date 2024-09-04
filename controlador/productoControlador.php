@@ -27,7 +27,7 @@ class ControladorProducto{
         $data=array(
             "cod_producto" => $_POST["cod_producto"],
             "cod_producto_sin" => $_POST["cod_producto_sin"],
-            "descripcion" => $_POST["descripcion"],
+            "nombre_producto" => $_POST["nombre_producto"],
             "precio_producto" => $_POST["precio_producto"],
             "unidad_medida" => $_POST["unidad_medida"],
             "unidad_medida_sin" => $_POST["unidad_medida_sin"],
@@ -57,7 +57,7 @@ class ControladorProducto{
         $data=array(
             "idProducto"=>$_POST["idProducto"],
             "codProductoSIN"=>$_POST["codProductoSIN"],
-            "descripcion"=>$_POST["desProducto"],
+            "nombre_producto"=>$_POST["desProducto"],
             "preProducto"=>$_POST["preProducto"],
             "unidadMedidad"=>$_POST["unidadMedidad"],
             "unidadMedidadSIN"=>$_POST["unidadMedidadSIN"],

@@ -13,15 +13,15 @@ class Modeloproducto{
     static public function mdlRegProducto($data){
         $codProducto = $data["cod_producto"];
         $codProductoSin = $data["cod_producto_sin"];
-        $descripcion = $data["descripcion"];
+        $nombre_producto = $data["nombre_producto"];
         $precioProducto = $data["precio_producto"];
         $unidadMedida = $data["unidad_medida"];
         $unidadMedidaSin = $data["unidad_medida_sin"];
         $imagenProducto = $data["imagen_producto"];
         
         
-        $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, descripcion, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) 
-        VALUES ('$codProducto', '$codProductoSin', '$descripcion', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto')");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) 
+        VALUES ('$codProducto', '$codProductoSin', '$nombre_producto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto')");
         
         if ($stmt->execute()) {
             return "ok";
@@ -50,7 +50,7 @@ class Modeloproducto{
 
         $id=$data["idProducto"];
         $codProductoSIN=$data["codProductoSIN"];
-        $descripcion=$data["descripcion"];
+        $nombre_producto=$data["nombre_producto"];
         $preProducto=$data["preProducto"];
         $unidadMedidad=$data["unidadMedidad"];
         $unidadMedidadSIN=$data["unidadMedidadSIN"];
@@ -59,7 +59,7 @@ class Modeloproducto{
     
     
     $stmt=Conexion::conectar()->prepare("update producto set cod_producto_sin='$codProductoSIN',
-     descripcion='$descripcion', precio_producto='$preProducto', unidad_medida='$unidadMedidad', unidad_medida_sin='$unidadMedidadSIN', imagen_producto='$imgProducto', disponible='$estado'
+     nombre_producto='$nombre_producto', precio_producto='$preProducto', unidad_medida='$unidadMedidad', unidad_medida_sin='$unidadMedidadSIN', imagen_producto='$imgProducto', disponible='$estado'
     where id_producto=$id");
     
             if($stmt->execute()){

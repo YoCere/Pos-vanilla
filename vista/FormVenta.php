@@ -92,21 +92,22 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Subtotal</span>
                   </div>
-                  <input type="text" class="form-control" name="subtotal" id="subtotal" value="0.00" readonly>
+                  <input type="text" class="form-control" name="subTotal" id="subTotal" value="0.00" readonly>
                 </div>
                 
                 <div class="input-group sm-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Descuento</span>
                   </div>
-                  <input type="text" class="form-control" name="descAdicional" id="descAdicional" value="0.00">
+                  <input type="text" class="form-control" name="descAdicional" id="descAdicional" value="0.00"
+                  onkeyup="calcularTotal()">
                 </div>
 
                 <div class="input-group sm-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Total</span>
                   </div>
-                  <input type="text" class="form-control" name="descAdicional" id="descAdicional" value="0.00" readonly>
+                  <input type="text" class="form-control" name="totApagar" id="totApagar" value="0.00" readonly>
                 </div>
                 
                 <div class="card-footer">

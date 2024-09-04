@@ -19,8 +19,8 @@
         </div>
         </div>
         <div class="form-group">
-            <label for="nombre_producto">Descripcion</label>
-            <input type="text" class="form-control" name="descripcion" id="descripcion">
+            <label for="nombre_producto">nombre</label>
+            <input type="text" class="form-control" name="nombre_producto" id="nombre_producto">
         </div>
 
         <div class="form-inline form-row">
@@ -85,7 +85,7 @@ $(function () {
         required: true,
         minlength: 1
       },
-      descripcion: {
+      nombre: {
         required: true,
         minlength: 3
       },

@@ -26,7 +26,7 @@
                   <tr>
                     <th>cod_producto</th>
                     <th>cod_producto_sin</th>
-                    <th>Descripcion</th>
+                    <th>nombre</th>
                     <th>precio</th>
                     <th>U. medida</th>
                     <th>U. medida sin</th>
@@ -45,7 +45,7 @@
                         <tr>
                             <td><?php echo $value["cod_producto"];?></td>
                             <td><?php echo $value["cod_producto_sin"];?></td>
-                            <td><?php echo $value["descripcion"];?></td>
+                            <td><?php echo $value["nombre_producto"];?></td>
                             <td><?php echo $value["precio_producto"];?></td>
                             <td><?php echo $value["unidad_medida"];?></td>
                             <td><?php echo $value["unidad_medida_sin"];?></td>
