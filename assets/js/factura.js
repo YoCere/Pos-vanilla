@@ -195,6 +195,8 @@ function calcularTotal(){
 }
 
 function emitirFactura(){
+    let date = new Date()
     let numFactura=parseInt(document.getElementById("numFactura").value)
-    let 
+    let fechaFactura=date.toISOString()
+    let rsCliente=
 }
