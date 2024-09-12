@@ -1,5 +1,12 @@
 //variables globales
 var host="http://localhost:5000/"
+var codSistema="775FA42BE90F7B78EF98F57"
+var cuis="9272DC05"
+var nitEmpresa=338794023
+var token="http://localhost:5000/Sincronizacion/listaproductosservicios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w"
+var rsEmpresa="NEOMAC SRL"
+var telEmpresa="9422560"
+var dirEmpresa="Calle Pucara 129 AVENIDA 7MO ANILLO NRO. 7550 ZONA/BARRIO: TIERRAS NUEVAS UV:0135 MZA: 007"
 function verificarComunicacion(){
     var obj=""
 
@@ -194,9 +201,73 @@ function calcularTotal(){
     document.getElementById("totApagar").value=totalCarrito-descAdicional
 }
 
+//Obtencion de CUFD
+
+
 function emitirFactura(){
     let date = new Date()
     let numFactura=parseInt(document.getElementById("numFactura").value)
     let fechaFactura=date.toISOString()
-    let rsCliente=
+    let rsCliente=document.getElementById("nomFactura").value
+    let tpDocumento=parseInt(document.getElementById("tpDocumento").value)
+    let nitCliente=document.getElementById("tpDocumento").value
+    let metPago=parseInt(document.getElementById("metPago").value)
+    let totApagar=parseFloat(document.getElementById("totApagar").value)
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    let subTotal=parseFloat(document.getElementById("subTotal").value)
+    let usuarioLogin=document.getElementById("usuarioLogin").innerHTML
+    let actEconomica=document.getElementById("actEconomica").value
+    let emailcliente=document.getElementById("emailCliente").value
+
+    var obj={
+        codAmbiente:2,
+        codigoDocumentoSector:1,
+        codigoEmision:1,
+        codigoModalidad:2,
+        codigoPuntoVenta:0,
+        codigoPuntoVentaSpecified:true,
+        codigoSistema: codSistema,
+        codigoSucursal: 0,
+        cufd:"",
+        cuis:cuis,
+        nit:nitEmpresa,
+        tipoFacturaDocumento:1,
+        archivo:null,
+        fechaEnvio:fechaFactura,
+        hashArchivo:"",
+        codigoControl:"",
+        factura:{
+            cabecera:{
+                nitEmisor:nitEmpresa,
+                razonSocialEmisor: rsEmpresa,
+                municipio: "Santa Cruz",
+                telefono: telEmpresa,
+                numeroFactura:numFactura,
+                cuf:"String",
+                cufd:"",
+                codigoSucursal:0,
+                direccion:dirEmpresa,
+                codigoPuntoVenta:0,
+                fechaEmision:fechaFactura,
+                nombreRazonSocial:rsCliente,
+                codigoTipoDocumentoIdentidad:tpDocumento,
+                numeroDocumento:nitCliente,
+                complemento:"",
+                codigoCliente:nitCliente,
+                codigoMetodoPago:metPago,
+                numeroTarjeta:null,
+                montoTotal:subTotal,
+                montoTotalSujetoIva:totApagar,
+                montoGiftCard:0,
+                descuentoAdicional:descAdicional,
+                codigoExcepcion:"0",
+                cafc:null,
+                leyenda:"",
+                usuario:usuarioLogin,
+                codigoDocumentoSector:1
+            },
+            detalle:arregloCarrito
+        }
+
+    }
 }
