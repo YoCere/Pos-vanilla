@@ -29,7 +29,7 @@
           <div class="form-group row col-md-9">
             <div class="form-group col-md-3">  
               <label for="">#Factura</label>
-              <input type="number" class="form-control" name="numFactura" id="numFactura" readonly>
+              <input type="number" class="form-control" name="numFactura" id="numFactura" readonly ">
             </div>
 
             <div class="form-group col-md-3">
@@ -164,7 +164,7 @@
               $productos = ControladorProducto::ctrInfoProductos();
               foreach($productos as $value){
                 ?>
-                <option value="<?php echo $value["cod_producto"]?>"><?php echo $value["descripcion"]?>
+                <option value="<?php echo $value["cod_producto"]?>"><?php echo $value["nombre_producto"]?>
                   </option>
 
                 <?php
@@ -250,6 +250,10 @@
   </div>
 
   <script>
+    
+    setTimeout(()=>{
+      numFactura()
+    }, 4000 )
     setTimeout(()=>{
       verfificarVigenciaCufd()
     }, 4000 )

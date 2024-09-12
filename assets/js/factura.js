@@ -89,7 +89,7 @@ function busProducto(){
         data:obj,
         dataType:"json",
         success:function(data){
-            document.getElementById("conceptoPro").value=data["descripcion"];
+            document.getElementById("conceptoPro").value=data["nombre_producto"];
             document.getElementById("uniMedida").value=data["unidad_medida"];
             document.getElementById("preUnitario").value=data["precio_producto"];
 
@@ -294,6 +294,32 @@ function verfificarVigenciaCufd(){
     })
 }
 
+//========================
+//validacion de formulario
+//=======================
+function validarFormulario(){
+    let numFactura=document.getElementById("numFactura").value
+    let nitCliente=document.getElementById("nitCliente").value
+    let emailCliente=document.getElementById("emailCliente").value
+    let rsCliente=document.getElementById("rsCliente").value
+
+    if(numFactura==null || numFactura.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurate de llenar los campos faltantes</span><br>")
+        return false
+    }else if(nitCliente==null || nitCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurate de llenar los campos faltantes</span><br>")
+        return false
+    }else if(emailCliente==null || emailCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurate de llenar los campos faltantes</span><br>")
+        return false
+    }else if(rsCliente==null || rsCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurate de llenar los campos faltantes</span><br>")
+        return false
+    }
+    return true
+}
+
+
 //obtener leyenda
 function extraerLeyenda(){
     var obj=""
@@ -309,12 +335,14 @@ function extraerLeyenda(){
 }
 
 function emitirFactura(){
+    if(validarFormulario()==true){
+        
     let date = new Date()
     let numFactura=parseInt(document.getElementById("numFactura").value)
     let fechaFactura=date.toISOString()
-    let rsCliente=document.getElementById("nomFactura").value
+    let rsCliente=document.getElementById("rsCliente").value
     let tpDocumento=parseInt(document.getElementById("tpDocumento").value)
-    let nitCliente=document.getElementById("tpDocumento").value
+    let nitCliente=document.getElementById("nitCliente").value
     let metPago=parseInt(document.getElementById("metPago").value)
     let totApagar=parseFloat(document.getElementById("totApagar").value)
     let descAdicional=parseFloat(document.getElementById("descAdicional").value)
@@ -324,7 +352,7 @@ function emitirFactura(){
     let emailcliente=document.getElementById("emailCliente").value
 
     var obj={
-        codAmbiente:2,
+        codigoAmbiente:2,
         codigoDocumentoSector:1,
         codigoEmision:1,
         codigoModalidad:2,
@@ -362,9 +390,12 @@ function emitirFactura(){
                 numeroTarjeta:null,
                 montoTotal:subTotal,
                 montoTotalSujetoIva:totApagar,
+                codigoMoneda:1,
+                tipoCambio:1,
+                montoTotalMoneda:totApagar,
                 montoGiftCard:0,
                 descuentoAdicional:descAdicional,
-                codigoExcepcion:"0",
+                codigoExcepcion:0,
                 cafc:null,
                 leyenda:leyenda,
                 usuario:usuarioLogin,
@@ -372,6 +403,20 @@ function emitirFactura(){
             },
             detalle:arregloCarrito
         }
+    }
+    
+    $.ajax({
+        type:"POST",
+        url:host+"api/CompraVenta/recepcion",
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"application/json",
+        processData:false,
+        success:function(data){
+            console.log(data)
+        }
+
+    })
 
     }
 }
