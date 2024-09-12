@@ -53,7 +53,7 @@
               <div class="input-group">
               <input type="text" class="form-control" list="listaClientes" name="nitCliente" id="nitCliente">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secundary" type="button" onclick="busCliente()">
+                  <button class="btn btn-outline-secundary" type="button" onclick="busCliente()" onkeyup="numFactura()">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
@@ -251,9 +251,7 @@
 
   <script>
     
-    setTimeout(()=>{
-      numFactura()
-    }, 4000 )
+   
     setTimeout(()=>{
       verfificarVigenciaCufd()
     }, 4000 )

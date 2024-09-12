@@ -1,5 +1,5 @@
 //variables globales
-var host="http://localhost:5000/"
+var host="http://localhost:5000"
 var codSistema="775FA42BE90F7B78EF98F57"
 var cuis="9272DC05"
 var nitEmpresa=338794023
@@ -134,8 +134,7 @@ function agregarCarrito(){
         codigoProducto:codProducto,
         descripcion:conceptoPro,
         cantidad:cantProducto,
-        unidadMedida:uniMedida,
-        unidadMedidaSin:uniMedidaSin,
+        unidadMedida:uniMedidaSin,
         precioUnitario:preUnitario,
         montoDescuento:descProducto,
         subtotal:preTotal
@@ -220,7 +219,7 @@ function solicitudCufd(){
         }
         $.ajax({
             type:"POST",
-            url:host+"api/Codigos/solicitudCufd?token="+token,
+            url:host+"/api/Codigos/solicitudCufd?token="+token,
             data:JSON.stringify(obj),
             cache:false,
             contentType:"application/json",
@@ -407,7 +406,7 @@ function emitirFactura(){
     
     $.ajax({
         type:"POST",
-        url:host+"api/CompraVenta/recepcion",
+        url:host+"/api/CompraVenta/recepcion",
         data:JSON.stringify(obj),
         cache:false,
         contentType:"application/json",
