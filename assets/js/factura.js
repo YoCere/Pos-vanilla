@@ -3,10 +3,14 @@ var host="http://localhost:5000/"
 var codSistema="775FA42BE90F7B78EF98F57"
 var cuis="9272DC05"
 var nitEmpresa=338794023
-var token="http://localhost:5000/Sincronizacion/listaproductosservicios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w"
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w"
 var rsEmpresa="NEOMAC SRL"
 var telEmpresa="9422560"
 var dirEmpresa="Calle Pucara 129 AVENIDA 7MO ANILLO NRO. 7550 ZONA/BARRIO: TIERRAS NUEVAS UV:0135 MZA: 007"
+var cufd;
+var codControlCufd;
+var fechaVigCufd;
+
 function verificarComunicacion(){
     var obj=""
 
@@ -202,6 +206,93 @@ function calcularTotal(){
 }
 
 //Obtencion de CUFD
+function solicitudCufd(){
+    return new Promise((resolve, reject)=>{
+        var obj={
+            codigoAmbiente:2,
+            codigoModalidad:2,
+            codigoPuntoVenta:0,
+            codigoPuntoVentaSpecified:true,
+            codigoSistema:codSistema,
+            codigoSucursal:0,
+            nit:nitEmpresa,
+            cuis:cuis
+        }
+        $.ajax({
+            type:"POST",
+            url:host+"api/Codigos/solicitudCufd?token="+token,
+            data:JSON.stringify(obj),
+            cache:false,
+            contentType:"application/json",
+            success:function(data){
+                cufd=data["codigo"]
+                codControlCufd=data["codigoControl"]
+                fechaVigCufd=data["fechaVigencia"]
+
+                resolve(cufd)
+            }
+        })
+    })
+    
+    
+}
+//Registrar cufd
+
+function registrarNuevoCufd(){
+    solicitudCufd().then(ok=>{
+        if(ok!="" || ok!=null){
+            var obj={
+                "cufd":cufd,
+                "fechaVigCufd":fechaVigCufd,
+                "codControlCufd":codControlCufd
+            }
+            $.ajax({
+                type:"POST",
+                data:obj,
+                url:"controlador/facturaControlador.php?ctrNuevoCufd",
+                cache:false,
+                success:function(data){
+                    if(data=="ok"){
+                    $("#panelInfo").before("<span class='text-primary'>Cufd registrado</span><br>")
+                }else{
+                    $("#panelInfo").before("<span class='text-warning'>Error de registro CUFD...</span><br>")
+                }
+                }
+            })
+        }
+    })
+    
+}
+
+function verfificarVigenciaCufd(){
+    let date=new Date()
+
+    //obteniendo el ultimo registro de cufd
+
+    var obj=""
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrUltimoCufd",
+        data:obj,
+        dataType:"json",
+        success:function(data){
+            //comprobacion
+            let VigCufdActual=new Date(data["fecha_vigencia"])
+            if(date.getTime()>VigCufdActual.getTime()){
+                $("#panelInfo").before("<span class='text-warning'>Cufd caducado!!</span><br>")
+                $("#panelInfo").before("<span class='text-warning'>Registrando cufd...</span><br>")
+                registrarNuevoCufd()
+            }else{
+                $("#panelInfo").before("<span class='text-warning'>Cufd vigente, haciendo procesos magicos...</span><br>")
+                $("#panelInfo").before("<span class='text-warning'>procesos magicos, finalizados</span><br>")
+                //Actualizando variables
+                cufd=data["codigo_cufd"]
+                codControlCufd=data["codigo_control"]
+                fechaVigCufd=data["fecha_vigencia"]
+            }
+        }
+    })
+}
 
 
 function emitirFactura(){

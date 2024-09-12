@@ -116,11 +116,16 @@
                     <select name="metPago" id="metPago" class="form-control">
                       <option value="1">Efectivo</option>
                     </select>
+
+                    <div class="callaout callaout-info direct-chat-menssages" style="height: 100px; width: 290px;">
+            <span class="list-unstyled" id="panelInfo"></span>
+           </div>
                   </div>
                 </div>
             </div>
           </div>
-
+           <!--Panel de avisos-->
+           
         </div>
       </div>
       <div class="card-footer">
@@ -243,3 +248,9 @@
   </div>
   <!-- /.content-wrapper -->
   </div>
+
+  <script>
+    setTimeout(()=>{
+      verfificarVigenciaCufd()
+    }, 4000 )
+  </script>
