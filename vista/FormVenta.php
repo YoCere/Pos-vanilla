@@ -253,4 +253,7 @@
     setTimeout(()=>{
       verfificarVigenciaCufd()
     }, 4000 )
+    setTimeout(()=>{
+      extraerLeyenda()
+    }, 4000 )
   </script>

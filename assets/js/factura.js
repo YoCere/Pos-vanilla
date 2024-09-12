@@ -257,7 +257,7 @@ function registrarNuevoCufd(){
                 }else{
                     $("#panelInfo").before("<span class='text-warning'>Error de registro CUFD...</span><br>")
                 }
-                }
+            }
             })
         }
     })
@@ -294,6 +294,19 @@ function verfificarVigenciaCufd(){
     })
 }
 
+//obtener leyenda
+function extraerLeyenda(){
+    var obj=""
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrLeyenda",
+        cache:false,
+        dataType:"json",
+        success:function(data){
+            leyenda=data["desc_leyenda"]
+        }
+    })
+}
 
 function emitirFactura(){
     let date = new Date()
@@ -319,14 +332,14 @@ function emitirFactura(){
         codigoPuntoVentaSpecified:true,
         codigoSistema: codSistema,
         codigoSucursal: 0,
-        cufd:"",
+        cufd:cufd,
         cuis:cuis,
         nit:nitEmpresa,
         tipoFacturaDocumento:1,
         archivo:null,
         fechaEnvio:fechaFactura,
         hashArchivo:"",
-        codigoControl:"",
+        codigoControl:codControlCufd,
         factura:{
             cabecera:{
                 nitEmisor:nitEmpresa,
@@ -335,7 +348,7 @@ function emitirFactura(){
                 telefono: telEmpresa,
                 numeroFactura:numFactura,
                 cuf:"String",
-                cufd:"",
+                cufd:cufd,
                 codigoSucursal:0,
                 direccion:dirEmpresa,
                 codigoPuntoVenta:0,
@@ -353,7 +366,7 @@ function emitirFactura(){
                 descuentoAdicional:descAdicional,
                 codigoExcepcion:"0",
                 cafc:null,
-                leyenda:"",
+                leyenda:leyenda,
                 usuario:usuarioLogin,
                 codigoDocumentoSector:1
             },
