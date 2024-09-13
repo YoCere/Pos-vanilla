@@ -412,10 +412,24 @@ function emitirFactura(){
         contentType:"application/json",
         processData:false,
         success:function(data){
-            console.log(data)
+            if(data["codigoResultado"]!=908){
+                $("panelInfo").before("<span class='text-danger'>Error, factura no emitida!!!</span><br>")
+            }else{
+                $("panelInfo").before("<span>Registrando factura... </span><br>")
+                
+                let datos={
+                codigoResultado:data["codigoResultado"],
+                codigoRecepcion:data["datoAdicional"].["codigoRecepcion"],
+                cuf:data["datoAdicional"]["cuf"],
+                sentDate:data["datoAdicional"]["sentDate"],
+                xml:data["datoAdicional"]["xml"],
+                }
+                registrarFactura(datos)
+            }
         }
 
     })
 
     }
 }
+
