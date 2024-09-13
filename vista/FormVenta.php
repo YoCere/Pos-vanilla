@@ -190,7 +190,7 @@
           <div class="form-group col-md-1">
             <label for="">U. medida</label>
             <div class="input-group form-group">
-              <input type="text" class="form-control" name="uniMedida" id="uniMedida">
+              <input type="text" class="form-control" name="uniMedida" id="uniMedida" readonly>
               <input type="hidden" id="uniMedidaSin" name="uniMedidaSin">
             </div>
           </div>

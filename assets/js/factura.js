@@ -16,7 +16,7 @@ function verificarComunicacion(){
 
     $.ajax({
         type:"POST",
-        url:host+"api/CompraVenta/comunicacion",
+        url:host+"/api/CompraVenta/comunicacion",
         data:obj,
         cache:false,
         contentType:"application/json",
