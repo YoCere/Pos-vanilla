@@ -108,9 +108,9 @@ function calcularPreProducto(){
     let descProducto=parseFloat(document.getElementById("descProducto").value)
     let preUnit=parseFloat(document.getElementById("preUnitario").value)
 
-    let preProducto=preUnit-descProducto
+    let preProducto=preUnit*cantPro
     
-    document.getElementById("preTotal").value=preProducto*cantPro
+    document.getElementById("preTotal").value=preProducto-descProducto
 }
 
 //Carrito-------------------
@@ -274,24 +274,31 @@ function verfificarVigenciaCufd(){
         type:"POST",
         url:"controlador/facturaControlador.php?ctrUltimoCufd",
         data:obj,
+        cache:false,
         dataType:"json",
-        success:function(data){
-            
+        success:function(data){    
             //comprobacion
             //let VigCufdActual=new Date(data["fecha_vigencia"])
-            let VigCufdActual = new Date(data["fecha_vigencia"]);
+            //let VigCufdActual = new Date(data["fecha_vigencia"]);
             //console.log("Fecha actual: ", date);
             //console.log("Fecha de vigencia CUFD: ", VigCufdActual);
             //console.log("Fecha actual: ", date);
             //console.log("Fecha de vigencia CUFD: ", VigCufdActual);
             //if(date.getTime()>VigCufdActual.getTime()){
+            //let now = new Date();
+            //let VigCufdActual = new Date(data["fecha_vigencia"]);
 
-            let currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            let vigenciaDate = new Date(VigCufdActual.getFullYear(), VigCufdActual.getMonth(), VigCufdActual.getDate());
-            
-            console.log("Fecha de vigencia CUFD: ", currentDate.getTime());
-            console.log("Fecha actual: ", vigenciaDate.getTime());
-            if(currentDate.getTime() > vigenciaDate.getTime()){
+            // Convertir a zona horaria local (Bolivia Time GMT-4)
+            //let nowLocal = new Date(now.toLocaleString("en-US", { timeZone: "America/La_Paz" }));
+            //let VigCufdActualLocal = new Date(VigCufdActual.toLocaleString("en-US", { timeZone: "America/La_Paz" }));
+
+            // Comparar
+            //if (nowLocal.getTime() > VigCufdActualLocal.getTime()) {
+            let vigCufdActual=new Date(data["fecha_vigencia"])
+            console.log(vigCufdActual)
+            console.log(date)
+
+            if(date.getTime()>vigCufdActual.getTime()){
                 $("#panelInfo").before("<span class='text-warning'>Cufd caducado!!</span><br>")
                 $("#panelInfo").before("<span class='text-warning'>Registrando cufd...</span><br>")
                 registrarNuevoCufd()
