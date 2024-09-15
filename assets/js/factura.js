@@ -55,6 +55,7 @@ function busCliente(){
                 document.getElementById("emailCliente").value=data["email_cliente"]
             }
             document.getElementById("rsCliente").value=data["razon_social_cliente"]
+            document.getElementById("idCliente").value=data["id_cliente"]
             numFactura()
         }
 
@@ -275,9 +276,22 @@ function verfificarVigenciaCufd(){
         data:obj,
         dataType:"json",
         success:function(data){
+            
             //comprobacion
-            let VigCufdActual=new Date(data["fecha_vigencia"])
-            if(date.getTime()>VigCufdActual.getTime()){
+            //let VigCufdActual=new Date(data["fecha_vigencia"])
+            let VigCufdActual = new Date(data["fecha_vigencia"]);
+            //console.log("Fecha actual: ", date);
+            //console.log("Fecha de vigencia CUFD: ", VigCufdActual);
+            //console.log("Fecha actual: ", date);
+            //console.log("Fecha de vigencia CUFD: ", VigCufdActual);
+            //if(date.getTime()>VigCufdActual.getTime()){
+
+            let currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            let vigenciaDate = new Date(VigCufdActual.getFullYear(), VigCufdActual.getMonth(), VigCufdActual.getDate());
+            
+            console.log("Fecha de vigencia CUFD: ", currentDate.getTime());
+            console.log("Fecha actual: ", vigenciaDate.getTime());
+            if(currentDate.getTime() > vigenciaDate.getTime()){
                 $("#panelInfo").before("<span class='text-warning'>Cufd caducado!!</span><br>")
                 $("#panelInfo").before("<span class='text-warning'>Registrando cufd...</span><br>")
                 registrarNuevoCufd()
@@ -412,6 +426,7 @@ function emitirFactura(){
         contentType:"application/json",
         processData:false,
         success:function(data){
+            console.log(data)
             if(data["codigoResultado"]!=908){
                 $("panelInfo").before("<span class='text-danger'>Error, factura no emitida!!!</span><br>")
             }else{
@@ -419,7 +434,7 @@ function emitirFactura(){
                 
                 let datos={
                 codigoResultado:data["codigoResultado"],
-                codigoRecepcion:data["datoAdicional"].["codigoRecepcion"],
+                codigoRecepcion:data["datoAdicional"]["codigoRecepcion"],
                 cuf:data["datoAdicional"]["cuf"],
                 sentDate:data["datoAdicional"]["sentDate"],
                 xml:data["datoAdicional"]["xml"],
@@ -431,5 +446,9 @@ function emitirFactura(){
     })
 
     }
+}
+
+function registrarFactura(datos){
+    let numFactura=document.getElementById("numFactura").value
 }
 

@@ -52,6 +52,7 @@
               <label for="">NIT/CI</label>
               <div class="input-group">
               <input type="text" class="form-control" list="listaClientes" name="nitCliente" id="nitCliente">
+              <input type="hidden" id="idCliente" name="idCliente">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secundary" type="button" onclick="busCliente()" onkeyup="numFactura()">
                     <i class="fas fa-search"></i>
