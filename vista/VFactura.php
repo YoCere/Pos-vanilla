@@ -24,14 +24,11 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>cod_producto</th>
-                    <th>cod_producto_sin</th>
-                    <th>nombre</th>
-                    <th>precio</th>
-                    <th>U. medida</th>
-                    <th>U. medida sin</th>
-                    <th>imagen</th>
-                    <th>Disp.</th>
+                    <th># Factura</th>
+                    <th>Cliente</th>
+                    <th>Emitido</th>
+                    <th>Total</th>
+                    <th>Estado</th>
                     <td>
                         <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
                     </td>
@@ -39,7 +36,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    $producto= ControladorProducto::ctrInfoProductos();
+                    $factura= ControladorFactura::ctrInfoFacturas();
                     foreach($producto as $value){
                         ?>
                         <tr>

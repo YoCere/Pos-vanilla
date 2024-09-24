@@ -5,7 +5,8 @@ class ModeloFactura{
 
     
     static public function mdlInfoFacturas(){
-        $stmt=Conexion::conectar()->prepare("select * from factura");
+        $stmt=Conexion::conectar()->prepare("SELECT cod_factura, razon_social_cliente, fecha_emision, total, estado_factura 
+        FROM factura JOIN cliente ON cliente.id_cliente=factura.id_cliente");
         $stmt->execute();
 
         return $stmt->fetchAll();
