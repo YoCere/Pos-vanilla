@@ -315,6 +315,22 @@ function verfificarVigenciaCufd(){
 }
 
 //========================
+//Tranformar fecha a formato ISO 8601
+//=======================
+
+function transformarFecha(fechaISO){
+    let fecha_iso=fechaISO.split("T")
+    let hora_iso=fecha_iso[1].split(".")
+
+    let fecha=fecha_iso[0]
+    let hora=hora_iso[0]
+
+    let fecha_hora=fecha+" "+hora
+    return fecha_hora
+}
+
+
+//========================
 //validacion de formulario
 //=======================
 function validarFormulario(){
@@ -457,5 +473,54 @@ function emitirFactura(){
 
 function registrarFactura(datos){
     let numFactura=document.getElementById("numFactura").value
+    let idCliente=document.getElementById("idCliente").value
+    let subTotal=parseFloat(document.getElementById("subTotal").value)
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    let totApagar=parseFloat(document.getElementById("totApagar").value)
+    let fechaEmision=transformarFecha(datos["sentDate"])
+    let idUsuario=document.getElementById("idUsuario").value
+    let usuarioLogin=document.getElementById("usuarioLogin").innerHTML
+
+    let obj={
+        "codFactura":numFactura,
+        "idCliente":idCliente,
+        "detalle":JSON.stringify(arregloCarrito),
+        "neto":subTotal,
+        "descuento":descAdicional,
+        "total":totApagar,
+        "fechaEmision":fechaEmision,
+        "cufd":cufd,
+        "cuf":datos["cuf"],
+        "xml":datos["xml"],
+        "idUsuario":idUsuario,
+        "usuario":usuarioLogin,
+        "leyenda":leyenda
+    }
+
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrRegistrarFactura",
+        data:obj,
+        cache:false,
+        success:function(data){
+            if(data=="ok"){
+                Swal.fire({
+                    icon:"success",
+                    showConfirmButton:false,
+                    tittle:"Factura registrada"
+                })
+                setTimeout(function(){
+                    location.reload()
+                },1000)
+            }else{
+                Swal.fire({
+                    icon:"error",
+                    showConfirmButton:false,
+                    tittle:"Error de registro intente de nuevo",
+                    timmer:1500
+                })
+            }
+            }
+        })
 }
 

@@ -44,6 +44,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block" id="usuarioLogin"><?php echo $_SESSION["login"];?></a>
+          <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION["idUsuario"];?>">
         </div>
       </div>
 
@@ -127,6 +128,15 @@
                 <a href="FormVenta" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Emitir factura</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+             
+              <li class="nav-item">
+                <a href="FormVenta" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista de Factura</p>
                 </a>
               </li>
             </ul>
