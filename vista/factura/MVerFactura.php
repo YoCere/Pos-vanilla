@@ -35,7 +35,7 @@ $producto=json_decode($factura["detalle"], true)
                     <td>
                     <th>Estado</th>
                     <td><?php
-                      if ($factura["disponible"] == 1) {
+                      if ($factura["estado_factura"] == 1) {
                       ?>
                       <span class="badge badge-success">Emitido</span>
                     <?php
@@ -62,6 +62,27 @@ $producto=json_decode($factura["detalle"], true)
                 <th>Descuento</th>
                 <th>Total</th>
             </thead>
+
+            <tbody>
+                <?php
+                foreach($producto as $value){
+                ?>
+                <tr>
+                    <td><?php echo $value["descripcion"]; ?></td>
+                    <td><?php echo $value["cantidad"]; ?></td>
+                    <td><?php echo $value["precioUnitario"]; ?></td>
+                    <td><?php echo $value["montoDescuento"]; ?></td>
+                    <td><?php echo $value["subtotal"]; ?></td>
+                </tr>
+                <?php
+                }
+                ?>
+                <tr>
+                    <td colspan="4"><b>Total</b></td>
+                    <td><?php echo $factura["neto"]; ?></td>
+                </tr>
+                </tbody>
+
            </table>
         </div>
     </div>

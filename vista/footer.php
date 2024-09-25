@@ -50,7 +50,7 @@ Seccion de modals
 </div>
 
 <div class="modal fade" id="modal-xl">
-  <div class="modal-dialog">
+<div class="modal-dialog modal-xl"> 
     <div class="modal-content" id="content-xl">
     </div>
   </div>

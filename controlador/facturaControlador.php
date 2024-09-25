@@ -5,8 +5,8 @@ if(isset($ruta["query"])){
     if($ruta["query"]=="ctrNumFactura"||
         $ruta["query"]=="ctrNuevoCufd"||
         $ruta["query"]=="ctrUltimoCufd"||
-        $ruta["query"]=="ctrInfoFacturas"||
-        $ruta["query"]=="ctrInfoFactura"||
+        //$ruta["query"]=="ctrInfoFacturas"||
+        //$ruta["query"]=="ctrInfoFactura"||
         $ruta["query"]=="ctrLeyenda"||
         $ruta["query"]=="ctrRegistrarFactura"||
         $ruta["query"]=="ctrEliFactura"){    
@@ -25,6 +25,7 @@ class ControladorFactura{
     
     static public function ctrInfoFactura($id){
         $respuesta=ModeloFactura::mdlInfoFactura($id);
+        
         return $respuesta;
     }
     
