@@ -30,52 +30,37 @@
                     <th>Total</th>
                     <th>Estado</th>
                     <td>
-                        <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
+                        <a href="FormVenta" class="btn btn-primary"></a>
                     </td>
                   </tr>
                   </thead>
                   <tbody>
                     <?php
                     $factura= ControladorFactura::ctrInfoFacturas();
-                    foreach($producto as $value){
+                    foreach($factura as $value){
                         ?>
                         <tr>
-                            <td><?php echo $value["cod_producto"];?></td>
-                            <td><?php echo $value["cod_producto_sin"];?></td>
-                            <td><?php echo $value["nombre_producto"];?></td>
-                            <td><?php echo $value["precio_producto"];?></td>
-                            <td><?php echo $value["unidad_medida"];?></td>
-                            <td><?php echo $value["unidad_medida_sin"];?></td>
-                            <td><?php
-                            if($value["imagen_producto"]==""){
-                              ?>
-                              <img src="assets/dist/img/producto.png" alt="" width="50" class="img-thumbail">
-                              <?php
-                            }else{
-                              ?>
-                              <img src="assets/dist/img/productos/<?php echo $value["imagen_producto"];?>" alt="" width="50" class="img-thumbail">
-                              <?php
-                            }
-                            ?></td>
+                            <td><?php echo $value["cod_factura"];?></td>
+                            <td><?php echo $value["razon_social_cliente"];?></td>
+                            <td><?php echo $value["fecha_emision"];?></td>
+                            <td><?php echo $value["total"];?></td>
+  
                             <td><?php 
-                            if($value['disponible']==1){
+                            if($value['estado_factura']==1){
                             ?>
-                            <span class="badge badge-success">Si</span>
+                            <span class="badge badge-success">Emitido</span>
                           <?php  
-                          }else{
+                          }else{    
                             ?>
-                            <span class="badge badge-danger">No</span>
+                            <span class="badge badge-danger">Anulada</span>
                           <?php
                           }?></td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-secondary" onclick="MVerProducto(<?php echo $value["id_producto"];?>)" >
+                                    <button class="btn btn-secondary" onclick="MVerFactura(<?php echo $value["id_factura"];?>)">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"];?>)" >
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"];?>)">
+                                    <button class="btn btn-danger" onclick="MEliFactura(<?php echo $value["id_factura"];?>)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>

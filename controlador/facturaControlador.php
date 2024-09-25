@@ -2,11 +2,11 @@
 $ruta=parse_url($_SERVER["REQUEST_URI"]);
 
 if(isset($ruta["query"])){
-    if($ruta["query"]=="ctrRegFactura"||
-        $ruta["query"]=="ctrEditFactura"||
-        $ruta["query"]=="ctrNumFactura"||
+    if($ruta["query"]=="ctrNumFactura"||
         $ruta["query"]=="ctrNuevoCufd"||
         $ruta["query"]=="ctrUltimoCufd"||
+        $ruta["query"]=="ctrInfoFacturas"||
+        $ruta["query"]=="ctrInfoFactura"||
         $ruta["query"]=="ctrLeyenda"||
         $ruta["query"]=="ctrRegistrarFactura"||
         $ruta["query"]=="ctrEliFactura"){    
@@ -22,18 +22,7 @@ class ControladorFactura{
         $respuesta=ModeloFactura::mdlInfoFacturas();
         return $respuesta;
     }
-    static public function ctrRegFactura(){
-        require "../modelo/FacturaModelo.php";
-        $password=password_hash($_POST["password"],PASSWORD_DEFAULT);
-
-        $data=array(
-            "loginFactura"=>$_POST["login"],
-            "password"=>$password,
-            "perfil"=>"Moderador"
-        );
-        $respuesta=ModeloFactura::mdlRegFactura($data);
-        echo $respuesta;
-    }
+    
     static public function ctrInfoFactura($id){
         $respuesta=ModeloFactura::mdlInfoFactura($id);
         return $respuesta;
