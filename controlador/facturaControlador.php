@@ -6,7 +6,7 @@ if(isset($ruta["query"])){
         $ruta["query"]=="ctrNuevoCufd"||
         $ruta["query"]=="ctrUltimoCufd"||
         //$ruta["query"]=="ctrInfoFacturas"||
-        //$ruta["query"]=="ctrInfoFactura"||
+        $ruta["query"]=="ctrAnularFactura"||
         $ruta["query"]=="ctrLeyenda"||
         $ruta["query"]=="ctrRegistrarFactura"||
         $ruta["query"]=="ctrEliFactura"){    
@@ -29,10 +29,10 @@ class ControladorFactura{
         return $respuesta;
     }
     
-    static function ctrEliFactura(){
-        require "../modelo/FacturaModelo.php";
-        $id=$_POST["id"];
-        $respuesta=ModeloFactura::mdlEliFactura($id);
+    static function ctrAnularFactura(){
+        require "../modelo/facturaModelo.php";
+        $cuf=$_POST["cuf"];
+        $respuesta=ModeloFactura::mdlAnularFactura($cuf);
         echo $respuesta;
     }
 

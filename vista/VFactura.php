@@ -44,6 +44,7 @@
                             <td><?php echo $value["razon_social_cliente"];?></td>
                             <td><?php echo $value["fecha_emision"];?></td>
                             <td><?php echo $value["total"];?></td>
+                            
   
                             <td><?php 
                             if($value['estado_factura']==1){
@@ -60,7 +61,7 @@
                                     <button class="btn btn-secondary" onclick="MVerFactura(<?php echo $value["id_factura"];?>)">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-danger" onclick="MEliFactura(<?php echo $value["id_factura"];?>)">
+                                    <button class="btn btn-danger" onclick="MEliFactura('<?php echo $value["cuf"];?>')">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>

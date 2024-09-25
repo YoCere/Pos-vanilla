@@ -539,3 +539,85 @@ function MVerFactura(id){
   })
 }
 
+function MEliFactura(cuf){
+
+    let obj={
+      codigoAmbiente:2,
+      codigoPuntoVenta:0,
+      codigoPuntoVentaSpecified:true,
+      codigoSistema:codSistema,
+      codigoSucursal:0,
+      nit:nitEmpresa,
+      codigoDocumentoSector:1,
+      codigoEmision:1,
+      codigoModalidad:2,
+      cufd:cufd,
+      cuis:cuis,
+      tipoFacturaDocumento:1,
+      codigoMotivo:1,
+      cuf:cuf}
+
+    Swal.fire({
+      title:"¿Está seguro de anular la factura seleccionada?",
+      showDenyButton:true,
+      showCancelButton:false,
+      confirmButtonText:'Confirmar',
+      denyButtonText:'Cancelar'
+  }).then((result)=>{
+      if(result.isConfirmed){
+          $.ajax({
+              type:"POST",
+              url:host+"/api/CompraVenta/anulacion",
+              data:JSON.stringify(obj),
+              cache:false,
+              contentType:"application/json",
+              processData:false,
+              success: function(data) {
+                if(data["codigoEstado"]==905){
+                  anularFactura(cuf)
+                }
+                else{
+                  Swal.fire({
+                    icon:'error',
+                    title:"ERROR",
+                    text:"Anulación rechazada",
+                    showConfirmButton:false,
+                    timer:1000
+                })
+                }
+              }
+          })
+      }
+  })
+  }
+  function anularFactura(cuf){
+    let obj={
+      cuf:cuf
+    }
+    $.ajax({
+      type:"POST",
+      url:"controlador/facturaControlador.php?ctrAnularFactura",
+      data:obj,
+      success: function(data) {
+        if(data=="ok"){
+          Swal.fire({
+            icon:'success',
+            title:"Factura Anulada ",
+            showConfirmButton:false,
+            timer:1000
+        })
+        setTimeout(function(){
+          location.reload()
+        },1200)
+        }else{
+          Swal.fire({
+            icon:'error',
+            title:"ERROR",
+            text:"Error al anular",
+            showConfirmButton:false,
+            timer:1000
+        })
+        }
+      }
+  })
+  }
