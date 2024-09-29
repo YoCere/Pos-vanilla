@@ -5,7 +5,7 @@ require_once "../../modelo/facturaModelo.php";
 
 $id = $_GET["id"];
 $factura = ControladorFactura::ctrInfoFactura($id);
-$producto=json_decode($factura["detalle"], true)
+$producto=json_decode($factura["detalle"], true);
 ?>
 
 <div class="modal-header bg-info">
