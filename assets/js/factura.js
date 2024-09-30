@@ -145,7 +145,7 @@ function agregarCarrito(){
     dibujarTablaCarrito()
 
     //vaciar el formulario del carrito
-    document.getElementById("actEconomica").value=""
+
     document.getElementById("codProducto").value=""
     document.getElementById("codProductoSin").value=""
     document.getElementById("conceptoPro").value=""
@@ -424,7 +424,7 @@ function emitirFactura(){
                 codigoCliente:nitCliente,
                 codigoMetodoPago:metPago,
                 numeroTarjeta:null,
-                montoTotal:subTotal,
+                montoTotal:totApagar,
                 montoTotalSujetoIva:totApagar,
                 codigoMoneda:1,
                 tipoCambio:1,
