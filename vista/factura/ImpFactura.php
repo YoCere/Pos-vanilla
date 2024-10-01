@@ -6,10 +6,17 @@ require_once "../../assets/fpdf/fpdf.php";
 $id=$_GET["id"];
 $factura = ControladorFactura::ctrInfoFactura($id);
 $producto=json_decode($factura["detalle"], true);
-?>
-<?php
 
-$pdf = new FPDF();
+class PDF extends FPDF{
+    function Footer(){
+        global $factura;
+        $this->setY(-15);
+        $this->SetFont("Arial", "I", 8);
+        $this->Cell(0, 10, utf8_decode($factura["leyenda"]), 0, 0, 'C');
+    }
+}
+
+$pdf = new PDF();
 $pdf->AddPage();
 
 //encabezado
