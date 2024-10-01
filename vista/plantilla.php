@@ -24,6 +24,11 @@ session_start();
   <link rel="icon" href="assets/dist/img/Logo_POS.png">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+      <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
 
 <?php
