@@ -33,10 +33,10 @@
 <!-- SweetAlert2 -->
 <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- ChartJS -->
-<script src="assets/plugins/chart.js/Chart.min.js"></script>
-<!-- daterangepicker -->
 <script src="assets/plugins/moment/moment.min.js"></script>
 <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- ChartJS -->
+<script src="assets/plugins/chart.js/Chart.min.js"></script>
 
 
 <!-- AdminLTE for demo purposes -->
@@ -46,7 +46,13 @@
 <script src="assets/js/cliente.js"></script>
 <script src="assets/js/producto.js"></script>
 <script src="assets/js/factura.js"></script>
+<script src="assets/js/reportes.js"></script>
 <!--==================================
+Grafico
+=====================================-->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) 
+<script src="assets/dist/js/pages/dashboard.js"></script>
+==================================
 Seccion de modals
 =====================================-->
 <div class="modal fade" id="modal-default">
@@ -74,4 +80,5 @@ Seccion de modals
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
+  
 </script>

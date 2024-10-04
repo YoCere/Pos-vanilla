@@ -90,4 +90,8 @@ class ControladorUsuario{
         $respuesta=ModeloUsuario::mdlEliUsuario($id);
         echo $respuesta;
     }
+    static public function ctrCantidadUsuarios(){
+        $respuesta=ModeloUsuario::mdlCantidadUsuarios();
+        return ($respuesta);
+    }
 }

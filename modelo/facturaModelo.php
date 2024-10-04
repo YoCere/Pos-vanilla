@@ -91,5 +91,14 @@ class ModeloFactura{
             }
     
         
-    }
+    }static public function mdlCantidadVentas(){
+    $stmt=Conexion::conectar()->prepare("select count(*) as venta from factura");
+    $stmt->execute();
+
+    return $stmt->fetch();
+
+    /*   $stmt->close();
+    $stmt->null; */ 
+}
+
 }
